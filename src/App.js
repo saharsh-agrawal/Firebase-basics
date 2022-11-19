@@ -1,12 +1,12 @@
 import "./styles.css";
-import { useState } from "react";
+import { React, useState } from "react";
 import { app, database } from "./firebaseConfig";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
 } from "firebase/auth";
 import {
   collection,
@@ -14,8 +14,8 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc
-  } from "firebase/firestore";
+  deleteDoc,
+} from "firebase/firestore";
 
 export default function App() {
   const [data, setData] = useState({});
@@ -62,7 +62,7 @@ export default function App() {
   const handleSubmit = () => {
     addDoc(collectionRef, {
       email: data.email,
-      password: data.password
+      password: data.password,
     })
       .then(() => {
         alert("Data added");
@@ -82,30 +82,30 @@ export default function App() {
     });
   };
 
-  const updateData=()=>{
-    const docToUpdate=doc(database,"users",'biIAUz6UojFjUOhfIJnv');
-    updateDoc(docToUpdate,{
-      email:"ABC",
-      password:"123"
+  const updateData = () => {
+    const docToUpdate = doc(database, "users", "biIAUz6UojFjUOhfIJnv");
+    updateDoc(docToUpdate, {
+      email: "ABC",
+      password: "123",
     })
-    .then(()=>{
-      alert("Data updated")
-    })
-    .catch((err)=>{
-      alert(err.message)
-    })
-  }
+      .then(() => {
+        alert("Data updated");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
-  const deleteData=()=>{
-    const docToUpdate=doc(database,"users",'biIAUz6UojFjUOhfIJnv');
+  const deleteData = () => {
+    const docToUpdate = doc(database, "users", "biIAUz6UojFjUOhfIJnv");
     deleteDoc(docToUpdate)
-    .then(()=>{
-      alert("Data deleted")
-    })
-    .catch((err)=>{
-      alert(err.message)
-    })
-  }
+      .then(() => {
+        alert("Data deleted");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   return (
     <div className="App-header">
